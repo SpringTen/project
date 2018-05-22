@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.ShopInfoMapper">
+  <resultMap id="BaseResultMap" type="com.model.ShopInfo">
+    <id column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="shop_date" jdbcType="TIMESTAMP" property="shopDate" />
+    <association property="user" column="user_id"
+		javaType="com.model.UserInfo">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+	    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+	    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+	    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+	    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+	    <result column="user_sex" jdbcType="VARCHAR" property="userSex" />
+	    <result column="user_age" jdbcType="INTEGER" property="userAge" />
+	    <result column="user_image" jdbcType="VARCHAR" property="userImage" />
+	    <result column="user_money" jdbcType="INTEGER" property="userMoney" />
+	</association>
+	<association property="sking" column="sking_id"
+		javaType="com.model.SkingInfo">
+		<id column="sking_id" jdbcType="INTEGER" property="skingId" />
+	    <result column="sking_name" jdbcType="VARCHAR" property="skingName" />
+	    <result column="sking_brief" jdbcType="VARCHAR" property="skingBrief" />
+	    <result column="sking_image" jdbcType="VARCHAR" property="skingImage" />
+	    <result column="sking_cost" jdbcType="INTEGER" property="skingCost" />
+	    <result column="sking_count" jdbcType="INTEGER" property="skingCount" />
+	    <association property="type" column="type_id"
+			javaType="com.model.TypeInfo">
+			<id column="type_id" jdbcType="INTEGER" property="typeId" />
+		    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+		    <result column="type_brief" jdbcType="VARCHAR" property="typeBrief" />
+		</association>
+	</association>
+  </resultMap>
+  <select id="findByUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * 
+    from shop_info s left join user_info u on s.user_id=u.user_id
+    left join sking_info sk on s.sking_id=sk.sking_id
+    left join type_info t on sk.type_id=t.type_id
+    where s.user_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from shop_info
+    where shop_id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="shopAdd" parameterType="com.model.ShopInfo">
+    insert into shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user.userId != null">
+        user_id,
+      </if>
+      <if test="sking.skingId != null">
+        sking_id,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="shopDate != null">
+        shop_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user.userId != null">
+        #{user.userId,jdbcType=INTEGER},
+      </if>
+      <if test="sking.skingId != null">
+        #{sking.skingId,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopDate != null">
+        #{shopDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.ShopInfo">
+    update shop_info
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="skingId != null">
+        sking_id = #{skingId,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopDate != null">
+        shop_date = #{shopDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.ShopInfo">
+    update shop_info
+    set user_id = #{userId,jdbcType=INTEGER},
+      sking_id = #{skingId,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      shop_date = #{shopDate,jdbcType=TIMESTAMP}
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findList" resultMap="BaseResultMap">
+    select *
+    from shop_info s left join user_info u on s.user_id=u.user_id
+    left join sking_info sk on s.sking_id=sk.sking_id
+    left join type_info t on sk.type_id=t.type_id
+    where 1=1 
+    <if test="userId != null">
+        and s.user_id = #{userId}
+    </if>
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1)
+  	from shop_info s left join user_info u on s.user_id=u.user_id
+  	left join sking_info sk on s.sking_id=sk.sking_id
+    left join type_info t on sk.type_id=t.type_id
+    where 1=1 
+    <if test="userId != null">
+        and s.user_id = #{userId}
+    </if>
+  </select>
+  
+</mapper>

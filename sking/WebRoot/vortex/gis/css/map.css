@@ -1,0 +1,34 @@
+.esriPopup .titleButton.maximize {
+	display: none;
+}
+
+.esriPopup .titleButton {
+	display: none;
+}
+
+.esriSimpleSliderTL1 {
+	top: 20px;
+	right: 20px;
+}
+
+.MFMP_button {
+	display: none;
+}
+
+.tip_closeX_mapabc {
+	display: none;
+}
+
+.esriPopup .titlePane {
+	background-color: #FFFFFF;
+	color: #FFFFFF;
+	padding-left: 0px;
+}
+
+.esriPopup .sizer {
+	width: auto;
+}
+
+img {
+	max-width: none;
+}

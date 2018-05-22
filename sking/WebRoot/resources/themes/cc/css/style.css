@@ -1,0 +1,30 @@
+html{ height:100%;}
+body {
+	height:100%;
+	margin:0px;
+	padding:0px;
+}
+.headdiv{
+	position: absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	overflow:hidden; background:url(../images/headbg02.png) repeat-x; height:127px
+}
+.maindiv{position:absolute; top:127px; left:0px; bottom:28px; right:0px;overflow-x:hidden; background:#acd4f3 url(../images/centerbg.png)}
+.maindiv02{position:absolute; top:127px; left:0px; bottom:28px; right:0px;overflow-x:hidden; background:#acd4f3 url(../images/indexcenterbg.png)}
+.maindiv iframe {position:absolute!important;position:relative; height:100%;width:100%; border:0}
+.bottomdiv{
+	height:28px;
+	position: absolute;
+	left:0px;
+	bottom:0px;
+	right:0px;
+	overflow:hidden; background:#4287c1;
+	background-position:left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+}
+.menubg{height:34px;width:100%; float:left; background:url(../images/menubg01.png) repeat-x;}
+.fontcolor01{color:#F60}

@@ -1,0 +1,1 @@
+var fileConstant = '${ctx}/vortexfile/clientUploadFile/download/';

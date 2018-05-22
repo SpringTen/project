@@ -1,0 +1,151 @@
+@charset "utf-8";
+/*通用*/
+.vnavfont{font-family: 'Microsoft Yahei',verdana;font-weight:bold;color: #666666;}
+.vnavsize{ font-size:14px;}
+
+.vfloat{ float:left;}
+.vsoqkbut{width:5px; height:28px;}
+.a:hover{ background-color:#e9e9e9;}
+a{outline:none; text-decoration:none; list-style:none;color: #666666;}
+.content-left-img{position:absolute; margin-top:5px; margin-left:-20px; border:0px;}
+.vsubbut{ margin-left:75%; margin-top:-29px;}
+/*通用end*/
+.vnav{ height:24px; line-height:24px;}
+/*虚线*/
+.vsep{border-bottom:1px #CCC dashed;margin-top: 5px;margin-bottom: 5px;}
+/*虚线END*/
+
+
+.vtbnav{border-bottom: 1px solid #aec9eb;}
+.vtbnavtitle{ width:125px; height:28px;background-image:url(../images/xxxx.png); background-position: -5px -15px; line-height:28px; text-align:center;}
+.vtbnav2{border-bottom:1px solid #dfdfdf;}
+.vtbnavtitle2{ width:125px; height:28px;background-image:url(../images/xxxx.png); background-position: -5px -66px; line-height:28px; text-align:center;}
+.vtbnavfont{font-family: 'Microsoft Yahei',verdana;}
+.vtbnavsize{ font-size:14px;}
+.vtb {
+	 font-size:14px; 
+	 font-family: 'Microsoft Yahei',verdana; 
+	 font-weight:100;
+	 min-width:800px;
+}
+.vtb tr {
+	height: 37px;
+	line-height: 37px;
+}
+.vtb tr:hover {
+	cursor:pointer;
+	background-color:#f1f8fe;
+}
+.vtbtralignR{ text-align:right;}/* 文字居右*/
+.vtbtralignL{ text-align:left;}/* 文字居右*/
+.vtbtralignC{ text-align:center;}
+.vtbtrbg{ background-color:#f9f9f9;}
+.vlabfontcolor{ color:#F00;}
+.vlablast{ margin-left:5px;}
+/*右边end*/
+
+/** 输入框**/
+input.vinput{
+	/* border: 1px solid #84b6e5; */
+	border:1px #cad6e4 solid;
+	height:23px;
+	color: #999;
+	width:70%;
+	/* min-width:250px; */
+	margin-bottom: 0px;
+}
+textarea.vinput{
+	 height: 60px; width: 88%; margin-top:5px; margin-bottom: 1px; color: #999; border:1px #cad6e4 solid;
+}
+select.vinput{
+	/* border: 1px solid #84b6e5; */
+	border:1px #cad6e4 solid;
+	height:31px;
+	color: #999;
+	width:74.5%;
+	margin-bottom: 0px;
+}
+
+/** 错误信息**/
+span.error{display:block;margin-left: 0px;line-height: 20px;}
+
+/** bootstrap**/
+input, button, select, textarea {
+font-family: 'Microsoft Yahei',verdana;
+}
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+cursor: not-allowed;
+background-color: #ffffff;
+}
+
+input[type="checkbox"] {
+margin: 2px 0 0;
+margin-top: 1px 9;
+line-height: normal;
+}
+form {
+  margin: 0 0 0px;
+}
+.btn-primary {
+	background: #E74A3E;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E75A3E),
+		color-stop(48%, #E75A3E), color-stop(50%, #E75A3E),
+		color-stop(100%, #DA433A));
+	background: -webkit-linear-gradient(center top, #E75A3E 0pt, #E75A3E 48%, #E75A3E
+		50%, #DA433A 100%) repeat scroll 0 0 #E75A3E;
+	background: -moz-linear-gradient(center top, #E75A3E 0pt, #E75A3E 48%, #E75A3E 50%,
+		#DA433A 100%) repeat scroll 0 0 #E75A3E;
+	background: -o-linear-gradient(center top, #E75A3E 0pt, #E75A3E 48%, #E75A3E 50%,
+		#DA433A 100%) repeat scroll 0 0 #E75A3E;
+	background: -ms-linear-gradient(center top, #E75A3E 0pt, #E75A3E 48%, #E75A3E 50%,
+		#DA433A 100%) repeat scroll 0 0 #E75A3E;
+	background: linear-gradient(center top, #E75A3E 0pt, #E75A3E 48%, #E75A3E 50%,
+		#DA433A 100%) repeat scroll 0 0 #E75A3E;
+	border: 1px solid #AB3019;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+background: #d9443c;
+}
+
+.map-tool {
+background-color: #fafafa;
+top: 4px;
+padding: 2px;
+margin: 0;
+}
+.map-tool .btn-group button.drawing_mode.active {
+background: #EEEEEE;
+}
+.map-tool .btn-group button.btn {
+border: 1px solid #ccc;
+border-radius: 2px;
+background: #FDFDFD;
+height: 30px;
+}
+.pull-left {
+float: left;
+}
+.map-search {
+position: relative;
+border-radius: 2px;
+margin-left: 5px;
+}
+/** bootstrap**/
+
+/** easyui**/
+.datagrid-header-row, .datagrid-row {
+ height: 35px;
+}
+.datagrid-header-row{
+	/* font-weight: bold; */
+}
+.datagrid-row-selected {
+  background: #E6E6E6;
+  color: #ff743e;
+}
+/** easyui**/
+
+/** 文件上传 **/
+.fileimg{height:80px;width:80px;}
+.fileout{border:1px solid white;height:100px;width:100px;}
+.fileon{border:1px solid #666;background: #e5f3ff;height:100px;width:100px; }

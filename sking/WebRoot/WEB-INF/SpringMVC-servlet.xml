@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+  http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <!-- 配置springmvc自动扫描的controller所在的包 -->
+    <context:component-scan base-package="com.controller" />
+        
+          
+    <!-- 配置转换器 -->    
+    <mvc:annotation-driven conversion-service="conversionService"/>     
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<!-- <bean class="com.controller.converter.CustomDateConverter"/> -->
+			</list> 
+		</property>
+	</bean>  
+   	<bean
+	    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <!-- prefix:controller跳转到的页面的目录 -->
+	    <!-- suffix:跳转的页面扩展名 -->
+	    <property name="prefix" value="/" />
+	    <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <!-- 实现访问多方法的解析器,需要的controller注入就可以 -->
+	<bean id="paramMethodResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <property name="paramName" value="action"></property>    
+    </bean>
+    
+    <!-- 过滤静态文件(让文件可以访问) -->
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/images/" mapping="/images/**" />
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/bootstrap-3.3.7-dist/" mapping="/bootstrap-3.3.7-dist/**"/>
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+    <mvc:resources location="/common/" mapping="/common/**"/>
+    <mvc:resources location="/resources/" mapping="/resources/**"/>
+    <mvc:resources location="/vortex/" mapping="/vortex/**"/>
+    <!-- <mvc:resources location="/img/" mapping="/img/**"/> -->
+    
+    <!-- 配置Json -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJackson2HttpMessageConverter" />
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>text/json;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- 文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为5MB -->
+		<!-- <property name="maxUploadSize">
+			<value>5242880</value>
+		</property> -->
+		<property name="defaultEncoding" value="UTF-8"/>
+		<!-- 延迟加载 -->
+		<property name="resolveLazily" value="true" />
+	</bean>
+  
+   </beans>

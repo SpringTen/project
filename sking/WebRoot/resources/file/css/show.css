@@ -1,0 +1,13 @@
+@charset "utf-8";
+body{ margin:0px auto;}
+.sizebold{ font-weight:bold;}/*字体加粗*/
+.vimg-txt{ color:#909090;}  /*字体灰色*/
+.vimg{border:1px #e6e6e6 solid;width:130px; height:150px; text-align:center;margin-top:30px; margin-left:30px; font-size:12px; text-align:center;overflow:hidden; line-height:20px; float:left;}/*图标样式*/
+.vimg-con{width:130px; height:20px; overflow:hidden;}
+/*列表样式*/
+.vimg:hover{ background-color:#f0f0f0; border:1px #F00 solid;cursor:pointer;}
+.vimg img{ margin-top:7px;height:100px;width:100px;}
+.vcolimg{ width:98%; height:50px; margin:0px auto; border-bottom:1px #f4f4f4 solid; font-size:12PX; line-height:17px;}
+.vcolimg-img{float:left; width:35px; height:35px; margin-top:7px;}
+.vcolimg-txt{margin-top:7px; height:35px; width:auto;; float:left; margin-left:7px;}
+/*列表样式END*/

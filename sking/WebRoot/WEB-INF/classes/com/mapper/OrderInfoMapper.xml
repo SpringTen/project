@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.model.OrderInfo">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_count" jdbcType="INTEGER" property="orderCount" />
+    <result column="order_cost" jdbcType="INTEGER" property="orderCost" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <association property="user" column="user_id" javaType="com.model.UserInfo">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+	    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+	    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+	    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+	    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+	    <result column="user_sex" jdbcType="VARCHAR" property="userSex" />
+	    <result column="user_age" jdbcType="INTEGER" property="userAge" />
+	    <result column="user_image" jdbcType="VARCHAR" property="userImage" />
+	    <result column="user_money" jdbcType="INTEGER" property="userMoney" />
+	</association>
+	<association property="sking" column="sking_id" javaType="com.model.SkingInfo">
+		<id column="sking_id" jdbcType="INTEGER" property="skingId" />
+	    <result column="sking_name" jdbcType="VARCHAR" property="skingName" />
+	    <result column="sking_brief" jdbcType="VARCHAR" property="skingBrief" />
+	    <result column="sking_image" jdbcType="VARCHAR" property="skingImage" />
+	    <result column="sking_cost" jdbcType="INTEGER" property="skingCost" />
+	    <result column="sking_count" jdbcType="INTEGER" property="skingCount" />
+	    <association property="type" column="type_id"
+			javaType="com.model.TypeInfo">
+			<id column="type_id" jdbcType="INTEGER" property="typeId" />
+		    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+		    <result column="type_brief" jdbcType="VARCHAR" property="typeBrief" />
+		</association>
+	</association>
+  </resultMap>
+  
+  <select id="findOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from order_info o left join user_info u on o.user_id=u.user_id
+    left join sking_info s on o.sking_id=s.sking_id
+    left join type_info t on s.type_id=t.type_id
+    where order_id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findBySking" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from order_info o left join user_info u on o.user_id=u.user_id
+    left join sking_info s on o.sking_id=s.sking_id
+    left join type_info t on s.type_id=t.type_id
+    where o.sking_id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select *
+    from order_info o left join user_info u on o.user_id=u.user_id
+    left join sking_info s on o.sking_id=s.sking_id
+    left join type_info t on s.type_id=t.type_id
+    where order_status!='已归还'
+    <if test="name != null">
+        and u.user_name like #{name}
+    </if>
+    <if test="phone != null">
+        and u.user_phone like #{phone}
+    </if>
+  </select>
+  <select id="findByUser" resultMap="BaseResultMap">
+    select *
+    from order_info o left join user_info u on o.user_id=u.user_id
+    left join sking_info s on o.sking_id=s.sking_id
+    left join type_info t on s.type_id=t.type_id
+    where 
+    o.user_id=#{id}
+  </select>
+  <select id="getMyOrderList" resultMap="BaseResultMap">
+  	select * 
+    from order_info o left join user_info u on o.user_id=u.user_id
+    left join sking_info sk on o.sking_id=sk.sking_id
+    left join type_info t on sk.type_id=t.type_id
+    where o.user_id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1)
+    from order_info o left join user_info u on o.user_id=u.user_id
+    left join sking_info s on o.sking_id=s.sking_id
+    left join type_info t on s.type_id=t.type_id
+    where order_status!='已归还'
+    <if test="name != null">
+        and u.user_name like #{name}
+    </if>
+    <if test="email != null">
+        and u.user_email like #{email}
+    </if>
+  </select>
+  <select id="findRecent" resultType="java.lang.Integer">
+    select sum(o.order_count)
+    from order_info o left join user_info u on o.user_id=u.user_id
+    left join sking_info s on o.sking_id=s.sking_id
+    left join type_info t on s.type_id=t.type_id
+    where order_status='未出货'
+    	and o.sking_id=#{id}
+    	and o.start_date = #{start}
+  </select>
+  
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from order_info
+    where order_id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="orderAdd" parameterType="com.model.OrderInfo">
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="user.userId != null">
+        user_id,
+      </if>
+      <if test="sking.skingId != null">
+        sking_id,
+      </if>
+      <if test="orderCount != null">
+        order_count,
+      </if>
+      <if test="orderCost != null">
+        order_cost,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="orderDate != null">
+        order_date,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="user.userId != null">
+        #{user.userId,jdbcType=INTEGER},
+      </if>
+      <if test="sking.skingId != null">
+        #{sking.skingId,jdbcType=INTEGER},
+      </if>
+      <if test="orderCount != null">
+        #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderCost != null">
+        #{orderCost,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="orderStatusUpdate" >
+    update order_info
+    set order_status = #{status,jdbcType=INTEGER}
+    where order_id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findPageList" resultMap="BaseResultMap">
+    select *
+    from order_info o left join user_info u on o.user_id=u.user_id
+    left join sking_info s on o.sking_id=s.sking_id
+    left join type_info t on s.type_id=t.type_id
+    where 1=1 
+    <if test="userId != null">
+        and o.user_id = #{userId}
+    </if>
+  </select>
+  <select id="findPageCount" resultType="java.lang.Integer">
+    select count(1)
+    from order_info o left join user_info u on o.user_id=u.user_id
+    left join sking_info s on o.sking_id=s.sking_id
+    left join type_info t on s.type_id=t.type_id
+    where 1=1 
+    <if test="userId != null">
+        and o.user_id = #{userId}
+    </if>
+  </select>
+  
+</mapper>

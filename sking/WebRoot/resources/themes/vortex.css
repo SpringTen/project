@@ -1,0 +1,102 @@
+/** vortex add **/
+.v-window-min{
+	background:url('images/icons/window_min.gif') no-repeat;
+	height: 16px;
+}
+.v-window-max{
+	background:url('images/icons/window_max.gif') no-repeat;
+	height: 16px;
+}
+.icon-treeLeft{
+	background-position: 0px 0px;
+	background:url('images/icons/treeleft.png') no-repeat;
+	height: 16px;
+}
+.icon-treeRight{
+	background-position: 0px 0px;
+	background:url('images/icons/treeright.png') no-repeat;
+	height: 16px;
+}
+.icon-treeRefresh{
+	background-position: 0px 0px;
+	background:url('images/icons/refresh.png') no-repeat;
+	height: 16px;
+}
+.icon-treeSearch{
+	background-position: 0px 0px;
+	background:url('images/icons/split_search.png') no-repeat;
+	height: 16px;
+}
+
+.v-navigation{
+	background:url('images/icons/navigation.png') no-repeat;
+}
+.v-win{
+	background:url('images/icons/win.gif') no-repeat;
+	height: 16px;
+}
+.v-winmax{
+	background:url('images/icons/fullscr_on.gif') no-repeat;
+	height: 16px;
+}
+.v-xls{
+	background:url('images/icons/xls.gif') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.v-func{
+	background:url('images/icons/func.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.v-change{
+	background:url('images/icons/change.gif') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.v-full{
+	background:url('images/icons/full.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.v-hideeast{
+	background:url('images/icons/hideeast.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.v-hidenorth{
+	background:url('images/icons/hidenorth.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.v-hidesouth{
+	background:url('images/icons/hidesouth.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.v-hidewest{
+	background:url('images/icons/hidewest.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+
+.v-hidesouth{
+	background:url('images/icons/hidesouth.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.icon-polygon{
+	background:url('images/icons/polygon.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.icon-circle{
+	background:url('images/icons/circle.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}
+.icon-clear{
+	background:url('images/icons/clear.png') no-repeat;
+	background-position: 0px 0px;
+	height: 16px;
+}

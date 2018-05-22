@@ -1,0 +1,19 @@
+@charset "utf-8";
+body {
+	margin:0px auto;
+	background-color:#CCC;width:1200px; color:#FFF; font-family:"微软雅黑"; background-image:url(../images/vbg.jpg); background-repeat:no-repeat; background-position:center;
+}
+.main{ min-width:1200px; margin:0px auto; margin-top:50px;}
+.main a{ color:#FFF; text-decoration:none;}
+.hover:hover{width:190px; height:100px; background-color:#f09609; color:#fff;}
+.hover {}
+.jichu{ width:800px; height:100px;margin-bottom:10px;}
+.jichu1{width:190px; height:100px; background-color:#2796d1; text-align:center; float:left; margin-left:10px; }
+.jichu1-mian{width:190px; height:100px; background-color:#2796d1; text-align:center; float:left; margin-left:10px;}
+.jichu2{ background-color:#015683;}
+.jichu1-txt{ line-height:100px; color:#fa9300; font-weight:bold;}
+.jichu-img{margin:0px auto; padding-top:10px;}
+.jichu-img img{ border:0px;}
+.jichu-txt{padding-top:7px;}
+.gfjg{ width:1200px; height:100px; margin-bottom:10px;}
+

@@ -1,0 +1,159 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: "Microsoft YaHei";
+	background: url(../images/dhbg.jpg);
+	background-size: 100% 100%;
+}
+
+.main-panel{
+	height: 100%;
+	position: absolute;
+	top:50%;
+	left:0;
+	margin-top: -300px;
+	height: 550px;
+	width: 100%;
+}
+.head-panel{
+	height: 100px;
+	position: relative;
+}
+.head-logo-sec{
+	position: absolute;
+	left:24%;
+	top:30px;
+}
+.body-panel{
+	height: 350px;
+	width: 100%;
+	background-color:rgba(255,255,255,0.3)
+}
+.gadgets-panel{
+	width:900px;
+	margin: 0 auto;
+	height: 100%;
+	padding: 25px 0;
+}
+.foot-panel{
+	height: 100px;
+	position: relative;
+}
+.foot-info{
+	position: absolute;
+	top:50px;
+	right:20%;
+	color: #FFF;
+	font-size: 12px;
+}
+div.foot-info > span{
+	display: inline-block;
+	margin: 0 15px;
+}
+
+
+.container-middle-item{
+    cursor: pointer;
+    float: left;
+    margin: 5px;
+    box-sizing: border-box;
+    height: 140px;
+    padding: 20px 0;
+    text-align: center;
+    color: #FFF;
+    border-radius: 4px;
+}
+.container-middle-item > img{
+	height: 50px;
+	width:74px;
+	border:0;
+}
+.container-middle-item-m{
+	cursor: pointer;
+    float: left;
+    box-sizing: border-box;
+    width: 538px;
+    height: 290px;
+    text-align: center;
+}
+.container-middle-item1{
+    cursor: pointer;
+    float: left;
+    margin: 5px;
+    box-sizing: border-box;
+    height: 290px;
+    padding: 20px 0;
+    text-align: center;
+    color: #FFF;
+    border-radius: 4px;
+}
+.container-middle-item1 > img{
+	height: 70px;
+	width: 70px;
+	border:0;
+}
+.width-5-1{
+    width: 166px;
+}
+
+.width-5-2{
+    width: 350px;
+}
+
+.width-5-3{
+    width: 170px;
+}
+
+.lb-ct{
+
+}
+
+.img56{
+	width:56px;
+	height: 56px;
+}
+.paddingt30{
+	padding-top: 30px!important;
+}
+.paddingt80{
+	padding-top: 80px!important;
+}
+
+.background-2b7de1{
+    background-color: #2b7de1;
+}
+
+.background-8ebb22{
+    background-color: #8EBB22;
+}
+.background-ff6600{
+    background-color: #ff6600;
+}
+
+.background-2a87f0{
+    background-color: #2a87f0;
+}
+
+.background-4ab60b{
+    background-color: #4ab60b;
+}
+
+.background-095DA7{
+    background-color: #095DA7;
+}
+
+.background-999999{
+    background-color: #a5a29d;
+    cursor: not-allowed;
+}
+
+a > div{
+	
+	color:#FFF;
+	
+}
+
+a{
+	text-decoration: none;
+}

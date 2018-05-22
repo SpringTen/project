@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MessageInfoMapper">
+  <resultMap id="BaseResultMap" type="com.model.MessageInfo">
+    <id column="mess_id" jdbcType="INTEGER" property="messId" />
+    <result column="mess_title" jdbcType="VARCHAR" property="messTitle" />
+    <result column="mess_content" jdbcType="VARCHAR" property="messContent" />
+    <result column="mess_date" jdbcType="TIMESTAMP" property="messDate" />
+    <!-- <result column="admin_id" jdbcType="INTEGER" property="adminId"/> -->
+    <result column="mess_back" jdbcType="VARCHAR" property="messBack" />
+    <association property="admin" column="admin_id" javaType="com.model.AdminInfo">
+		<id column="admin_id" jdbcType="INTEGER" property="adminId" />
+	    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+	    <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd" />
+	    <result column="admin_type" jdbcType="VARCHAR" property="adminType" />
+	</association>
+	<association property="user" column="user_id" javaType="com.model.UserInfo">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+	    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+	    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+	    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+	    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+	    <result column="user_sex" jdbcType="VARCHAR" property="userSex" />
+	    <result column="user_age" jdbcType="INTEGER" property="userAge" />
+	    <result column="user_image" jdbcType="VARCHAR" property="userImage" />
+	    <result column="user_money" jdbcType="INTEGER" property="userMoney" />
+	</association>
+  </resultMap>
+  
+  <select id="myMessageById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select *
+    from message_info m left join admin_info a on m.admin_id=a.admin_id
+    left join user_info u on m.user_id=u.user_id
+    where 
+    m.user_id=#{id}
+  </select>
+  <select id="findList"  resultMap="BaseResultMap">
+  	select *
+    from message_info m left join admin_info a on m.admin_id=a.admin_id
+    left join user_info u on m.user_id=u.user_id
+    where 1=1
+    <if test="userName != null">
+        and u.user_name like #{userName}
+    </if>
+  </select>
+  <select id="findCount"  resultType="java.lang.Integer">
+  	select count(1)
+    from message_info m left join admin_info a on m.admin_id=a.admin_id
+    left join user_info u on m.user_id=u.user_id
+    where 1=1
+    <if test="userName != null">
+        and u.user_name like #{userName}
+    </if>
+  </select>
+  <select id="findOne"  resultMap="BaseResultMap">
+  	select *
+    from message_info m left join admin_info a on m.admin_id=a.admin_id
+    left join user_info u on m.user_id=u.user_id
+    where mess_id=#{id}
+  </select>
+  <update id="messUpdate">
+    update message_info set admin_id=#{adminId},mess_back=#{messBack} where mess_id=#{id}
+  </update>
+  <insert id="contactAdmin" parameterType="com.model.MessageInfo">
+    insert into message_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="admin.adminId != null">
+        admin_id,
+      </if>
+      <if test="messId != null">
+        mess_id,
+      </if>
+      <if test="messTitle != null">
+        mess_title,
+      </if>
+      <if test="messContent != null">
+        mess_content,
+      </if>
+      <if test="user.userId != null">
+        user_id,
+      </if>
+      <if test="messDate != null">
+        mess_date,
+      </if>
+      <if test="messBack != null">
+        mess_back,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="admin.adminId != null">
+        #{admin.adminId,jdbcType=INTEGER},
+      </if>
+      <if test="messId != null">
+        #{messId,jdbcType=INTEGER},
+      </if>
+      <if test="messTitle != null">
+        #{messTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="messContent != null">
+        #{messContent,jdbcType=VARCHAR},
+      </if>
+      <if test="user.userId != null">
+        #{user.userId,jdbcType=INTEGER},
+      </if>
+      <if test="messDate != null">
+        #{messDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messBack != null">
+        #{messBack,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+ 
+  <delete id="deleteMyMessageById" parameterType="java.lang.Integer">
+  	delete from message_info
+  	where mess_id=#{id}
+  </delete>
+ 
+</mapper>

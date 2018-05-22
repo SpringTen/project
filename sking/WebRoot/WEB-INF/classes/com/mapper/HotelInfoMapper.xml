@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.HotelInfoMapper">
+  <resultMap id="BaseResultMap" type="com.model.HotelInfo">
+    <id column="hotel_id" jdbcType="INTEGER" property="hotelId" />
+    <result column="hotel_name" jdbcType="VARCHAR" property="hotelName" />
+    <result column="hotel_brief" jdbcType="VARCHAR" property="hotelBrief" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="hotel_address" jdbcType="VARCHAR" property="hotelAddress" />
+    <result column="hotel_image" jdbcType="VARCHAR" property="hotelImage" />
+  </resultMap>
+  
+  <select id="findOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from hotel_info
+    where hotel_id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select *
+    from hotel_info
+    where 1=1
+    <if test="name != null">
+     	and hotel_name like #{name}
+    </if>
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1)
+    from hotel_info
+    where 1=1
+    <if test="name != null">
+     	and hotel_name like #{name}
+    </if>
+  </select>
+  <delete id="deleteById" >
+    delete from hotel_info
+    where hotel_id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="hotelAdd" parameterType="com.model.HotelInfo">
+    insert into hotel_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hotelName != null">
+        hotel_name,
+      </if>
+      <if test="hotelBrief != null">
+        hotel_brief,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="hotelAddress != null">
+        hotel_address,
+      </if>
+      <if test="hotelImage != null">
+        hotel_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hotelName != null">
+        #{hotelName,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelBrief != null">
+        #{hotelBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelAddress != null">
+        #{hotelAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelImage != null">
+        #{hotelImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="hotelUpdate" parameterType="com.model.HotelInfo">
+    update hotel_info
+    <set>
+      <if test="hotelName != null">
+        hotel_name = #{hotelName,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelBrief != null">
+        hotel_brief = #{hotelBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelAddress != null">
+        hotel_address = #{hotelAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelImage != null">
+        hotel_image = #{hotelImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hotel_id = #{hotelId,jdbcType=INTEGER}
+  </update>
+</mapper>

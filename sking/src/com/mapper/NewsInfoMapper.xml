@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.NewsInfoMapper">
+  <resultMap id="BaseResultMap" type="com.model.NewsInfo">
+    <id column="news_id" jdbcType="INTEGER" property="newsId" />
+    <result column="news_title" jdbcType="VARCHAR" property="newsTitle" />
+    <result column="news_content" jdbcType="VARCHAR" property="newsContent" />
+    <result column="news_image" jdbcType="VARCHAR" property="newsImage" />
+    <result column="news_date" jdbcType="TIMESTAMP" property="newsDate" />
+  </resultMap>
+  
+  <select id="findOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from news_info
+    where news_id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findList"  resultMap="BaseResultMap">
+    select *
+    from news_info
+    where 1=1
+    <if test="title != null">
+        and news_title like #{title}
+    </if>
+  </select>
+  <select id="findCount"  resultType="java.lang.Integer">
+    select count(1)
+    from news_info
+    where 1=1
+    <if test="title != null">
+        and news_title like #{title}
+    </if>
+  </select>
+   <select id="findTop" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from news_info
+    order by news_date limit 0,6
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from news_info
+    where news_id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="newsAdd" parameterType="com.model.NewsInfo">
+    insert into news_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newsTitle != null">
+        news_title,
+      </if>
+      <if test="newsContent != null">
+        news_content,
+      </if>
+      <if test="newsImage != null">
+        news_image,
+      </if>
+      <if test="newsDate != null">
+        news_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newsTitle != null">
+        #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsContent != null">
+        #{newsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="newsImage != null">
+        #{newsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDate != null">
+        #{newsDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="newsUpdate" parameterType="com.model.NewsInfo">
+    update news_info
+    <set>
+      <if test="newsTitle != null">
+        news_title = #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsContent != null">
+        news_content = #{newsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="newsImage != null">
+        news_image = #{newsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDate != null">
+        news_date = #{newsDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+</mapper>

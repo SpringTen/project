@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Form - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+<body>
+		<div class="btn_content">
+			<label for="">11111111111111</label>
+			<div class="btn-group">
+              <span class="btn flag" onclick="isOrNo('1',this)">是</span>
+			  <span class="btn flag" onclick="isOrNo('1',this)">否</span>
+			  <input type="text" id="isOrNo1"/>
+           </div>
+		</div>
+		<div class="btn_content">
+			<label for="">11111111111111</label>
+			<div class="btn-group">
+              <span class="btn flag" onclick="isOrNo('2',this)">是</span>
+			  <span class="btn flag" onclick="isOrNo('2',this)">否</span>
+			  <input type="text" id="isOrNo2"/>
+           </div>
+		</div>
+		<div class="btn_content">
+			<label for="">11111111111111</label>
+			<div class="btn-group">
+              <span class="btn flag" onclick="isOrNo('3',this)">是</span>
+			  <span class="btn flag" onclick="isOrNo('3',this)">否</span>
+			  <input type="text" id="isOrNo3"/>
+           </div>
+		</div>
+		<div class="btn_content">
+			<label for="">11111111111111</label>
+			<div class="btn-group">
+              <span class="btn flag" onclick="isOrNo('4',this)">是</span>
+			  <span class="btn flag" onclick="isOrNo('4',this)">否</span>
+			  <input type="text" id="isOrNo4"/>
+           </div>
+		</div>
+
+		<input type="button" value="test" onclick="lastSubmit()">
+<script type="text/javascript">
+	
+	function isOrNo(i,obj){
+		$("#isOrNo"+i).val($(obj).html());
+		$(this).addClass("choose");
+        $(this).siblings().removeClass("choose");
+	}
+	
+	function lastSubmit(){
+		for(var i=1;i<=4;i++){
+			if(i==2)continue;
+			if($("#isOrNo"+i).val()==""){
+				alert("请选择");
+			}
+		}
+	}
+
+
+
+	function test(){
+		var inp=$(this).siblings().find("input");
+		alert(inp.val);
+		inp.val("3333");
+	}
+</script>
+
+
+
+</body>
+</html>

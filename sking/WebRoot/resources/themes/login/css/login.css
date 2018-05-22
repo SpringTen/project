@@ -1,0 +1,136 @@
+body, html{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background: url(/resources/themes/login/images/pic2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1920px 1080px;  
+}
+
+#form{
+	width: 100%;
+	height: 100%;
+	display: table;
+	text-align: center;
+}
+
+.login_container{
+	display: table-cell;
+    vertical-align: middle;
+}
+
+	.login_img{
+		display: inline-block;
+		width: 555px;
+		height: 187px;
+		margin: 50px 150px 0 0;
+	}
+
+	.login_panel{
+		position: relative;
+		display: inline-block;
+		vertical-align: top;
+		padding: 70px 30px 30px 30px;
+		box-sizing: border-box;
+		width: 300px;
+		height: 370px;
+		border-radius: 5px;
+		border: 2px solid white;
+		background: url(/resources/themes/login/images/pic4.png);
+	}
+
+		.login_panel .img_head{
+			position: absolute;
+			top: -62px;
+			left: 88px;
+			width: 124px;
+			height: 124px;
+		}
+
+		.login_panel  .login_panel_line{
+			position: relative;
+			width: 100%;
+			overflow: hidden;
+		}
+		
+ 			.login_panel  .login_panel_line .user_img{ 
+ 				position: absolute; 
+				top: 8px; 
+ 				left: 10px; 
+ 			} 
+
+			.login_panel  .login_panel_line button{
+				display: block;
+				border: none;
+				background-color: #38C64E;
+				height: 40px;
+				line-height: 40px;
+				width: 100%;
+				color: white;
+				border-radius: 3px;
+				cursor: pointer;
+			}
+
+ 				.login_panel  .login_panel_line button:hover{
+ 					background-color: #38C67E; 
+				} 
+
+			.login_panel  .login_panel_line > input{
+				outline: none;
+				border: none;
+				background-color: white;
+				height: 35px;
+				line-height: 35px;
+				margin-bottom: 15px; 
+				box-sizing: border-box;
+				border-radius: 4px;
+			}
+
+			.login_panel  .login_panel_line .all_line{
+				width: 100%;
+				padding: 0 10px 0 35px;
+			}
+
+			.login_panel  .login_panel_line .half_line{
+				width: 45%;
+				padding: 0 10px;
+				box-sizing: border-box;
+			}
+
+			.login_panel  .login_panel_line .half_code{
+				width: 50%;
+				height: 36px;
+				float: right;
+				padding-left: 10px;
+			}
+
+			.login_panel  .login_panel_line .check_half{
+				text-align: left;
+				width: 50%;
+				float: left;
+				height: 35px;
+				line-height: 35px;
+			}
+
+				.login_panel  .login_panel_line .check_half > label{
+					cursor: pointer;
+				}
+
+			.login_panel  .login_panel_line .errer_message{
+				line-height: 35px;
+				height: 45px;
+				text-align: left;
+				padding-left: 5px;
+				font-size: 14px;
+				color: red;
+			}
+
+.font_check{
+	font-size: 14px;
+	color: #333;
+}

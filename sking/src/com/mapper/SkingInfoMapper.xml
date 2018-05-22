@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.SkingInfoMapper">
+  <resultMap id="BaseResultMap" type="com.model.SkingInfo">
+    <id column="sking_id" jdbcType="INTEGER" property="skingId" />
+    <result column="sking_name" jdbcType="VARCHAR" property="skingName" />
+    <result column="sking_brief" jdbcType="VARCHAR" property="skingBrief" />
+    <result column="sking_image" jdbcType="VARCHAR" property="skingImage" />
+    <result column="sking_cost" jdbcType="INTEGER" property="skingCost" />
+    <result column="sking_count" jdbcType="INTEGER" property="skingCount" />
+    <association property="type" column="type_id"
+		javaType="com.model.TypeInfo">
+		<id column="type_id" jdbcType="INTEGER" property="typeId" />
+	    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+	    <result column="type_brief" jdbcType="VARCHAR" property="typeBrief" />
+	</association>
+  </resultMap>
+  
+  <select id="findOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from sking_info s left join type_info t on s.type_id=t.type_id
+    where sking_id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select *
+    from sking_info s left join type_info t on s.type_id=t.type_id
+    where 1=1 
+    <if test="name != null">
+        and sking_name like #{name}
+    </if>
+    <if test="type != null">
+        and s.type_id = #{type}
+    </if>
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1)
+    from sking_info s left join type_info t on s.type_id=t.type_id
+    where 1=1 
+    <if test="name != null">
+        and sking_name like #{name}
+    </if>
+    <if test="type != null">
+        and s.type_id = #{type}
+    </if>
+  </select>
+  <select id="findTop" resultMap="BaseResultMap">
+    select *
+    from sking_info s left join type_info t on s.type_id=t.type_id
+    order by sking_count limit 0,8
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from sking_info
+    where sking_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="skingAdd" parameterType="com.model.SkingInfo">
+    insert into sking_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skingName != null">
+        sking_name,
+      </if>
+      <if test="type.typeId != null">
+        type_id,
+      </if>
+      <if test="skingBrief != null">
+        sking_brief,
+      </if>
+      <if test="skingImage != null">
+        sking_image,
+      </if>
+      <if test="skingCost != null">
+        sking_cost,
+      </if>
+      <if test="skingCount != null">
+        sking_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skingName != null">
+        #{skingName,jdbcType=VARCHAR},
+      </if>
+      <if test="type.typeId != null">
+        #{type.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="skingBrief != null">
+        #{skingBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="skingImage != null">
+        #{skingImage,jdbcType=VARCHAR},
+      </if>
+      <if test="skingCost != null">
+        #{skingCost,jdbcType=INTEGER},
+      </if>
+      <if test="skingCount != null">
+        #{skingCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="skingUpdate" parameterType="com.model.SkingInfo">
+    update sking_info
+    <set>
+      <if test="skingName != null">
+        sking_name = #{skingName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type_id = #{type.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="skingBrief != null">
+        sking_brief = #{skingBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="skingImage != null">
+        sking_image = #{skingImage,jdbcType=VARCHAR},
+      </if>
+      <if test="skingCost != null">
+        sking_cost = #{skingCost,jdbcType=INTEGER},
+      </if>
+      <if test="skingCount != null">
+        sking_count = #{skingCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sking_id = #{skingId,jdbcType=INTEGER}
+  </update>
+  <update id="countReduce" >
+    update sking_info
+    set sking_count=sking_count-#{count}
+    where sking_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="countAdd" >
+    update sking_info
+    set sking_count=sking_count+#{count}
+    where sking_id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

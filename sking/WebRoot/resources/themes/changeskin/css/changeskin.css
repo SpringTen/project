@@ -1,0 +1,44 @@
+.skin {
+	width: 244px;
+	font-size: 12px;
+	float: left;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 15px;
+	border: 1px #FFF solid;
+	cursor:pointer;
+}
+
+.skin-img {
+	width: 244px;
+	height: 83px;
+}
+
+.skin-img-choose {
+	position: absolute;
+	margin-top: 40px;
+	margin-left: 200px;
+}
+
+.skin-txt {
+	width: 200px;
+	line-height: 32px;
+	float: left;
+}
+
+.skin-look {
+	width: 44px;
+	height: 32px;
+	line-height: 32px;
+	float: right;
+	cursor: pointer;
+}
+
+.skin-look img {
+	margin-top: 9px;
+}
+
+.skin-look a {
+	color: #2281be;
+	text-decoration: none;
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TypeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.model.TypeInfo">
+    <id column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="type_brief" jdbcType="VARCHAR" property="typeBrief" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    type_id, type_name, type_brief
+  </sql>
+  <select id="findList"  resultMap="BaseResultMap">
+    select *
+    from type_info
+    where 1=1
+    <if test="name != null">
+        and type_name like #{name}
+    </if>
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1)
+    from type_info
+    where 1=1
+    <if test="name != null">
+        and type_name like #{name}
+    </if>
+  </select>
+  <select id="findOne" resultMap="BaseResultMap">
+    select *
+    from type_info
+    where type_id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="loadAll" resultMap="BaseResultMap">
+    select *
+    from type_info
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from type_info
+    where type_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="typeAdd" parameterType="com.model.TypeInfo">
+    insert into type_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="typeBrief != null">
+        type_brief,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeBrief != null">
+        #{typeBrief,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="typeUpdate" parameterType="com.model.TypeInfo">
+    update type_info
+    <set>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeBrief != null">
+        type_brief = #{typeBrief,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+</mapper>
